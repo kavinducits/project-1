@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,23 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/registration', function () {
-    $students=[
-        ["name"=>"Kavindu","age"=>22,"address"=>"Galle"],
-        ["name"=>"Nimesh","age"=>21,"address"=>"Matara"],
-        ["name"=>"Sajith","age"=>23,"address"=>"Colombo"],
-        ["name"=>"Kasun","age"=>22,"address"=>"Kaluthara"],
-        ["name"=>"Amal","age"=>24,"address"=>"Jaffna"]
-    ];
-    return view('Registration.registration',["title"=>"User Registration Page","students"=>$students]);
-});
+Route::get('/registration', [RegistrationController::class,'list']);
 
-Route::get('/registration/{name}', function ($name) {
+Route::get('/registration/{name}', [RegistrationController::class,'show']);
 
-    return view('Registration.show',["student"=>["name"=>$name]]);
-});
-
-Route::get('/registration-form', function () {
-    
-    return view('Registration.registration-form',["title"=>"Student Registration"]);
-});
+Route::get('/registration-form', [RegistrationController::class,'register']);
