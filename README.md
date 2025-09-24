@@ -82,6 +82,8 @@ php artisan serve
 //making controllers
 
 php artisan make:controller NinjaController
+php artisan make:controller StudentController --resource //(--resource gives you all CRUD methods)
+
 
 
 // create model
