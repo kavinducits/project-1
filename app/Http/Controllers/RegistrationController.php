@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class RegistrationController extends Controller
@@ -22,11 +23,29 @@ class RegistrationController extends Controller
     }
     public function show($name)
     {
-        return view('Registration.show',["student"=>["name"=>$name]]);
+       $student=Student::findOrFail($name);
+        return view('Registration.show',["student"=>$student]);
     }
 
     public function register()
     {
         return view('Registration.registration-form',["title"=>"Student Registration"]);
+    }
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'age' => 'required|integer',
+            'address' => 'required|max:255',
+        ]);
+
+        // If the validation passes, you can proceed to save the data
+        $student = new Student();
+        $student->name = $request->input('name');
+        $student->age = $request->input('age');
+        $student->address = $request->input('address');
+        $student->save();
+
+        return redirect()->route('registration.list')->with('success', 'Student registered successfully!');
     }
 }
