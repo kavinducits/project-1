@@ -86,3 +86,6 @@ php artisan make:controller NinjaController
 
 // create model
 php artisan make:model Ninja -mfs //-mfs mean migration,factory and seed created
+
+//migrating command
+php artisan migrate
