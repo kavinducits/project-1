@@ -8,7 +8,7 @@
     <h1>{{ $title }}</h1>
 
     <!-- { route('students.store') }-->
-    <form action="" method="POST">
+    <form action="{{route('registration.store')}}" method="POST">
         @csrf
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>

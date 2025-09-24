@@ -89,3 +89,10 @@ php artisan make:model Ninja -mfs //-mfs mean migration,factory and seed created
 
 //migrating command
 php artisan migrate
+
+//we can use tincker to add recorde to tables through 
+php artisan tincker
+>use app\Models\Student
+> Ninja::create(['name'=>'mario','skill'=>75,'bio'=>'blash'])
+>Student::find(1) //find by id
+>Student::all()

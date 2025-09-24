@@ -18,6 +18,9 @@ class StudentFactory extends Factory
     {
         return [
             //
+            'name' => $this->faker->name(),
+            'age' => $this->faker->numberBetween(18, 25),
+            'address' => $this->faker->address(),
         ];
     }
 }
